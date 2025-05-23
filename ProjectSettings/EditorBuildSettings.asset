@@ -4,36 +4,6 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/TitleScene.unity
-    guid: 868395e6a2018f546ae33bb75d43d82f
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Scenes/Stage Select.unity
-    guid: 3ff0ed924678aca40a760a8e3df8d30d
-  - enabled: 0
-    path: Assets/Scenes/Next Stage.unity
-    guid: 0d1ceb3a34e6b1a42a6846e99aac1bd2
-<<<<<<< HEAD
-  - enabled: 0
-=======
-  - enabled: 0
-    path: Assets/Scenes/LoadingScene.unity
-    guid: 193d7091b483bb9488c8a1cd5e2edf20
-  - enabled: 0
->>>>>>> 6ab5c9e13df30397a7ff8766d66001ec270eaa34
-    path: Assets/Scenes/GameClearScene.unity
-    guid: 039ee1a16fea43241aa5d9720f5f3ff6
-  - enabled: 0
-    path: Assets/Scenes/GameOverScene.unity
-    guid: 4b05d4483f6706547858561cf41f9d19
-  - enabled: 1
-    path: Assets/Scenes/Test.unity
-    guid: f7a3c8db6aad8894d9b6341c64136e81
-  m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: aac95556945b0de468e45a1ed6d8c02a, type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_Scenes: []
+  m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
