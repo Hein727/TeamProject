@@ -17,6 +17,7 @@ public class Shooting_S : MonoBehaviour
     public bool spawnCheck = true;
     [SerializeField]
     private float spawnCoolDown = 0.0f;
+    public int ballsUsed = 0;
     // Update is called once per frame
     private void Start()
     {
@@ -33,6 +34,10 @@ public class Shooting_S : MonoBehaviour
             spawnCoolDown = 3.0f;
         }
 
+        if(ballsUsed > 4)
+        {
+            ballsUsed = 0;
+        }
         GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
         if (gameObject)
         {
@@ -68,6 +73,7 @@ public class Shooting_S : MonoBehaviour
                 gameObject.tag = "Untagged";
                 spawnCheck = false;
                 power = 0f;
+                ballsUsed++;
                 return;  
             }
         }   

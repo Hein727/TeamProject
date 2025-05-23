@@ -8,10 +8,16 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 using System.Collections;
+using UnityEngine.InputSystem.LowLevel;
+using Unity.VisualScripting;
+using UnityEngine.UI;
+using UnityEditor.Experimental.GraphView;
 
 public class BallSystem_S : MonoBehaviour
 {
     private List<GameObject> list;
+    private List<GameObject> list2;
+    public Image[] images;
     private Dictionary<string, int> amount = new Dictionary<string, int>()
     {
         { "RANK1", 3 },
@@ -26,11 +32,13 @@ public class BallSystem_S : MonoBehaviour
         { "RANK10", 1 },
     };
     private int count = 0;
+    private int swapCount = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         list = new List<GameObject>();
+        list2 = new List<GameObject>();
         StartCoroutine(LoadPrefabs());
     }
 
@@ -63,6 +71,8 @@ public class BallSystem_S : MonoBehaviour
     void Update()
     {
         Draw();
+
+        if(list2.Count != 0) UISwap();
     }
 
     private void Shuffle()
@@ -79,18 +89,120 @@ public class BallSystem_S : MonoBehaviour
 
     private void Draw()
     {
+        GameObject prefab;
         GameObject gameObject = GameObject.FindWithTag("Player");
         Shooting_S Shooting = FindFirstObjectByType<Shooting_S>();
         if (gameObject == null)
         {
             if (count < list.Count && list[count] != null && Shooting.spawnCheck)
             {
-                GameObject prefab = list[count];
-                GameObject instance = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
-                instance.tag = "Player";
-                count++;
+                if (list2.Count == 0)
+                {
+                    list2.Clear();
+                    prefab = list[count];
+                    list2.Add(prefab);
+                    GameObject instance = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
+                    instance.tag = "Player";
+                    for (int i = 1; i < 4; i++)
+                    {
+                        list2.Add(list[count++]);
+
+                    }
+
+                    UIInit();   
+                }
+                else if (list2[swapCount] != null)
+                {
+                    if (list2.Count == 0) return;
+
+                    list2.RemoveAt(swapCount);
+
+                    // Make sure swapCount is valid now
+                    if (list2.Count == 0) return; // Nothing to swap to
+
+                    swapCount %= list2.Count; // Stay within bounds
+
+                    // Spawn the new one
+                    prefab = list2[swapCount];
+                    GameObject pawn = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
+
+                }
             }
             else return;
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (list2.Count == 0) return;
+            
+            swapCount = (swapCount + 1) % list2.Count;
+            prefab = list2[swapCount];
+
+            if (Shooting.ballsUsed > 4)
+            {
+                list2.Clear();
+                swapCount = 0;
+                return;
+            }
+
+            if(gameObject != null)
+            {
+                Destroy(gameObject);
+            }
+
+            GameObject pawn = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
+        }
+    }
+
+    private void UIInit()
+    {
+        for (int i = 0; i < images.Length; i++)
+        {
+            int listIndex = i + 1;
+
+            if (listIndex < list2.Count && list2[listIndex] != null)
+            {
+                SpriteRenderer sr = list2[listIndex].GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    images[i].sprite = sr.sprite;
+                    images[i].enabled = true;
+                }
+                else
+                {
+                    images[i].enabled = false;
+                }
+            }
+            else
+            {
+                images[i].enabled = false;
+            }
+        }
+    }
+
+    private void UISwap()   
+    {
+
+        for (int i = 0; i < images.Length;i++)
+        {
+            int imageIndex = (swapCount + i + 1) % list2.Count;
+
+            if (list2[imageIndex] != null)
+            {
+                Sprite sprite = list2[imageIndex].GetComponent<SpriteRenderer>()?.sprite;
+                if (sprite != null)
+                {
+                    images[i].sprite = sprite;
+                    images[i].enabled = true;
+                }
+                else
+                {
+                    images[i].enabled = false;
+                }
+            }
+            else
+            {
+                images[i].enabled = false;
+            }
         }
     }
 }
