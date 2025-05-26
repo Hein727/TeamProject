@@ -4,26 +4,35 @@ using UnityEngine.UI;
 
 public class PowerBar_S : MonoBehaviour
 {
-    public new GameObject gameObject;
+    private GameObject shootingObject;
     public Image image;
+    public Image image1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject = GameObject.FindGameObjectWithTag("Shooting");
+        shootingObject = GameObject.FindGameObjectWithTag("Shooting");
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(gameObject)
+    {        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player != null)
         {
-            float power = gameObject.GetComponent<Shooting_S>().power;
-            image.fillAmount = Mathf.Clamp01(power);
             image.enabled = true;
+            image1.enabled = true;
+            if (shootingObject)
+            {
+                float power = shootingObject.GetComponent<Shooting_S>().power;
+                image.fillAmount = Mathf.Clamp01(power);
+            }
+            Debug.Log("Player" + player);
         }
         else
         {
             image.enabled = false;
+            image1.enabled = false; 
         }
+
     }
 }

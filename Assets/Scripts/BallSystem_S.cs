@@ -17,6 +17,8 @@ public class BallSystem_S : MonoBehaviour
 {
     private List<GameObject> list;
     private List<GameObject> list2;
+    private GameObject prefab;
+    private Shooting_S Shooting;
     public Image[] images;
     private Dictionary<string, int> amount = new Dictionary<string, int>()
     {
@@ -72,7 +74,12 @@ public class BallSystem_S : MonoBehaviour
     {
         Draw();
 
-        if(list2.Count != 0) UISwap();
+        if (Input.GetMouseButtonDown(1))
+        {
+            Swapping();
+        }
+
+        if (list2.Count != 0) UISwap();
     }
 
     private void Shuffle()
@@ -89,9 +96,8 @@ public class BallSystem_S : MonoBehaviour
 
     private void Draw()
     {
-        GameObject prefab;
         GameObject gameObject = GameObject.FindWithTag("Player");
-        Shooting_S Shooting = FindFirstObjectByType<Shooting_S>();
+        Shooting = FindFirstObjectByType<Shooting_S>();
         if (gameObject == null)
         {
             if (count < list.Count && list[count] != null && Shooting.spawnCheck)
@@ -109,7 +115,7 @@ public class BallSystem_S : MonoBehaviour
 
                     }
 
-                    UIInit();   
+                    UISwap();
                 }
                 else if (list2[swapCount] != null)
                 {
@@ -130,61 +136,45 @@ public class BallSystem_S : MonoBehaviour
             }
             else return;
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (list2.Count == 0) return;
-            
-            swapCount = (swapCount + 1) % list2.Count;
-            prefab = list2[swapCount];
-
-            if (Shooting.ballsUsed > 4)
-            {
-                list2.Clear();
-                swapCount = 0;
-                return;
-            }
-
-            if(gameObject != null)
-            {
-                Destroy(gameObject);
-            }
-
-            GameObject pawn = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
-        }
+       
     }
 
-    private void UIInit()
+    private void Swapping()
     {
-        for (int i = 0; i < images.Length; i++)
-        {
-            int listIndex = i + 1;
+        GameObject gameObject = GameObject.FindWithTag("Player");
 
-            if (listIndex < list2.Count && list2[listIndex] != null)
-            {
-                SpriteRenderer sr = list2[listIndex].GetComponent<SpriteRenderer>();
-                if (sr != null)
-                {
-                    images[i].sprite = sr.sprite;
-                    images[i].enabled = true;
-                }
-                else
-                {
-                    images[i].enabled = false;
-                }
-            }
-            else
-            {
-                images[i].enabled = false;
-            }
+        if (list2.Count == 0) return;
+
+        swapCount = (swapCount + 1) % list2.Count;
+        prefab = list2[swapCount];
+
+        if (Shooting.ballsUsed > 4)
+        {
+            list2.Clear();
+            swapCount = 0;
+            return;
         }
+
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+        }
+
+        GameObject pawn = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
+        UISwap();
     }
 
     private void UISwap()   
     {
-
         for (int i = 0; i < images.Length;i++)
         {
             int imageIndex = (swapCount + i + 1) % list2.Count;
+
+            if (i + 1 >= list2.Count)
+            {
+                images[i].enabled = false;
+                continue;
+            }
 
             if (list2[imageIndex] != null)
             {

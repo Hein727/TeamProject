@@ -41,10 +41,14 @@ public class Shooting_S : MonoBehaviour
         GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
         if (gameObject)
         {
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             start = gameObject.transform.position;
             end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = (end - start).normalized;
-            if (Input.GetMouseButtonDown(0)) { charging = true; }
+            if (Input.GetMouseButtonDown(0)) 
+            { 
+                charging = true;
+            }
             if (charging)
             {
                 if (increasing)
@@ -69,6 +73,7 @@ public class Shooting_S : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 charging = false;
+                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 gameObject.GetComponent<Rigidbody2D>().linearVelocity = direction * (power * gameObject.GetComponent<Stats_S>().Speed);
                 gameObject.tag = "Untagged";
                 spawnCheck = false;
