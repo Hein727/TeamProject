@@ -19,6 +19,11 @@ public class PowerBar_S : MonoBehaviour
         {
             float power = gameObject.GetComponent<Shooting_S>().power;
             image.fillAmount = Mathf.Clamp01(power);
+            image.enabled = true;
+        }
+        else
+        {
+            image.enabled = false;
         }
     }
 }
