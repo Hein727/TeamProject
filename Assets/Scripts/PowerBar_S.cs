@@ -26,7 +26,6 @@ public class PowerBar_S : MonoBehaviour
                 float power = shootingObject.GetComponent<Shooting_S>().power;
                 image.fillAmount = Mathf.Clamp01(power);
             }
-            Debug.Log("Player" + player);
         }
         else
         {

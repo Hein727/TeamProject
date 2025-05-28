@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8065007197418751985}
   - component: {fileID: 1731223212727961566}
   - component: {fileID: 7431806997918426252}
+  - component: {fileID: 7265353187097503452}
   m_Layer: 0
   m_Name: E  RANK2_0
   m_TagString: Enemy
@@ -168,3 +169,17 @@ MonoBehaviour:
   Rank: 1
   Speed: 5
   Damage: 5
+--- !u!114 &7265353187097503452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935186685858511985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09698f9ef2c4083449907e7b35f186a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteA: {fileID: 4161810244219937587, guid: ec0ec47a1e36b88428c5a728c762a27f, type: 3}
+  spriteB: {fileID: -7898577680928148871, guid: c763c5eb64dcf924b9e4a49f09d04a15, type: 3}

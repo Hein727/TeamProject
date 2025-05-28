@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2752375312088456371}
   - component: {fileID: 5973769050077180047}
   - component: {fileID: -7548984139465360103}
+  - component: {fileID: 2758421407635261298}
   m_Layer: 6
   m_Name: RANK8
   m_TagString: Player
@@ -246,3 +247,18 @@ MonoBehaviour:
   Rank: 1
   Speed: 10
   Damage: 5
+  explosionPrefab: {fileID: 1303528749979744626, guid: e2694b3650282884ab8bcd12d7ed437a, type: 3}
+--- !u!114 &2758421407635261298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5206106437984208262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09698f9ef2c4083449907e7b35f186a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteA: {fileID: -3018667716757963414, guid: 70f998caa09e55f41b842fd7125243b9, type: 3}
+  spriteB: {fileID: 764953519884311142, guid: a119423fb817d9d4fa860f932006d763, type: 3}

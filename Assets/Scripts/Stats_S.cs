@@ -4,29 +4,31 @@ using UnityEngine;
 public class Stats_S : MonoBehaviour
 {
     private float health = 0.0f;
-    [SerializeField] private int Rank = 1;
+    [SerializeField] public int Rank = 1;
     [SerializeField] public float Speed = 5f;
-    [SerializeField] private float Damage = 5f;
+    [SerializeField] public float Damage = 5f;
+    [SerializeField] public GameObject explosionPrefab;
 
     private void Start()
     {
-        health = 20 * Rank;
+        health = 20 * Rank;   
     }
     
     private void Update()
     {
         if(health <= 0)
         {
+            Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obsticle"))
+        Stats_S other = collision.gameObject.GetComponent<Stats_S>();
+        if (other != null)
         {
-            GameObject other = collision.gameObject;
-            health -= other.GetComponent<Stats_S>().Damage;
+            health -= other.Damage;
         }
         else { return ; }
     }

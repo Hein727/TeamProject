@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_GUID: dd8c809be9bdf7d418e18f0f7d61f4f0
+  m_GUID: 57627be3c7de24e4d9ce17caf3013e7a
   m_SerializeEntries:
   - m_GUID: 44a4f6ac901e8b3458f501bb1591f14a
     m_Address: PlayerPrefabs
