@@ -247,9 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7250623043f5a4844a18b462798171a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rank: 1
+  Rank: 10
   Speed: 10
-  Damage: 5
   explosionPrefab: {fileID: 1303528749979744626, guid: e2694b3650282884ab8bcd12d7ed437a, type: 3}
 --- !u!114 &4498857749298907159
 MonoBehaviour:

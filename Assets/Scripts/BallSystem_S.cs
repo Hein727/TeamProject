@@ -11,7 +11,6 @@ using System.Collections;
 using UnityEngine.InputSystem.LowLevel;
 using Unity.VisualScripting;
 using UnityEngine.UI;
-using UnityEditor.Experimental.GraphView;
 
 public class BallSystem_S : MonoBehaviour
 {
@@ -22,6 +21,7 @@ public class BallSystem_S : MonoBehaviour
     public Image[] images;
     private Dictionary<string, int> amount = new Dictionary<string, int>()
     {
+        { "N_0", 2 },
         { "RANK1", 3 },
         { "RANK2", 3 },
         { "RANK3", 3 },

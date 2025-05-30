@@ -169,6 +169,7 @@ MonoBehaviour:
   Rank: 1
   Speed: 5
   Damage: 5
+  explosionPrefab: {fileID: 1303528749979744626, guid: e2694b3650282884ab8bcd12d7ed437a, type: 3}
 --- !u!114 &-5626307963128735730
 MonoBehaviour:
   m_ObjectHideFlags: 0
