@@ -1,24 +1,46 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class AutoClearLoader : MonoBehaviour
 {
     [SerializeField]
-    private float waitTime = 3f;  // 待ち時間（秒）
+    private float waitTime = 3f;
 
     [SerializeField]
-    private string clearSceneName = "GameClearScene"; // 実際のクリアシーン名に合わせてね！
+    private string clearSceneName = "GameClearScene";
+
+    GameObject King;
+    private bool StageClear = false;
+    private float timer = 0f;
+    private bool sceneLoading = false;
 
     void Start()
     {
-        StartCoroutine(LoadClearSceneAfterDelay());
+        StageClear = false;
     }
 
-    IEnumerator LoadClearSceneAfterDelay()
+    void Update()
     {
-        yield return new WaitForSeconds(waitTime);
-        PlayerPrefs.SetString("LastStage", SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene(clearSceneName);
+        King = GameObject.Find("EnemyRank11");
+        if (King != null)
+        {
+            return;
+        }
+        else if (King == null)
+        {
+            StageClear = true;
+        }
+
+        if (StageClear && !sceneLoading)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= waitTime)
+            {
+                sceneLoading = true;
+                PlayerPrefs.SetString("LastStage", SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(clearSceneName);
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6946476502253790432}
   - component: {fileID: -2870156131493022837}
   m_Layer: 0
-  m_Name: E RANK11_0
+  m_Name: EnemyRank11
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

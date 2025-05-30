@@ -35,6 +35,7 @@ public class BallSystem_S : MonoBehaviour
     };
     private int count = 0;
     private int swapCount = 0;
+    public bool stageClear = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
