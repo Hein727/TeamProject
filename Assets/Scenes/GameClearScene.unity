@@ -129,10 +129,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7828862}
   - component: {fileID: 7828861}
-  - component: {fileID: 7828863}
   - component: {fileID: 7828864}
   - component: {fileID: 7828865}
-  - component: {fileID: 7828866}
+  - component: {fileID: 7828867}
+  - component: {fileID: 7828868}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -167,18 +167,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7828863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7828860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3876767bc2e87174ab577d514fa4b821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7828864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 
---- !u!114 &7828866
+--- !u!114 &7828867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,9 +203,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7828860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037d52894f5dbfb4abfab7f6203d2a4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 26de4bfd762bad6458bb4ad6cceddb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  congratulationsScene: CongratulationsScene
+  loadingScene: LoadingScene
+--- !u!114 &7828868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59248346258399e44b978dc291839576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageSelectSceneName: Stage Select
 --- !u!1 &124629095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,9 +1121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7828864}
-        m_TargetAssemblyTypeName: NextStageLoader, Assembly-CSharp
-        m_MethodName: LoadLoadingScene
+      - m_Target: {fileID: 7828867}
+        m_TargetAssemblyTypeName: NextStageHandler, Assembly-CSharp
+        m_MethodName: OnNextStageButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1263,8 +1266,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 213246242}
-  - {fileID: 1820512258}
   - {fileID: 1650950902}
+  - {fileID: 1820512258}
   - {fileID: 212316109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1356,9 +1359,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7828864}
-        m_TargetAssemblyTypeName: NextStageLoader, Assembly-CSharp
-        m_MethodName: LoadLoadingScene
+      - m_Target: {fileID: 7828868}
+        m_TargetAssemblyTypeName: TitleSceneLoader, Assembly-CSharp
+        m_MethodName: LoadStageSelectScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
