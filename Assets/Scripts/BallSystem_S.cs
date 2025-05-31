@@ -77,7 +77,7 @@ public class BallSystem_S : MonoBehaviour
     {
         Draw();
 
-        if (count >= list.Count)
+        if (count >= 24)
         {
             GameOver = true;
             Debug.Log("Game Over! You have no more balls left to play with." + GameOver);

@@ -40,11 +40,29 @@ public class Stats_S : MonoBehaviour
                     //checking if the rank 1 and bomb are colliding 
                     else if (other.GetComponent<Stats_S>().Rank == 999)
                     {
-                        if (Rank == 1)
+                        if (gameObject.tag == "Enemy")
                         {
-                            other.GetComponent<Stats_S>().isAlive = false;
+                            if (Rank == 1)
+                            {
+                                other.GetComponent<Stats_S>().isAlive = false;
+                            }
+                            else
+                            {
+                                other.GetComponent<Stats_S>().isAlive = false;
+                                isAlive = false;
+                            }
                         }
-                        isAlive = false;
+                        else if (other.tag == "Enemy")
+                        {
+                            if (Rank == 1)
+                            {
+                                other.GetComponent<Stats_S>().isAlive = false;
+                            }
+                            else
+                            {
+                                isAlive = false;
+                            }
+                        }
                     }
                     else if (other.GetComponent<Stats_S>().Rank != 11 && (Rank <= other.GetComponent<Stats_S>().Rank))
                     {
