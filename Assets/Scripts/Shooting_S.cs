@@ -15,6 +15,7 @@ public class Shooting_S : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     public bool spawnCheck = true;
+    public bool swap = true;
     [SerializeField]
     private float spawnCoolDown = 0.0f;
     public int ballsUsed = 0;
@@ -30,6 +31,7 @@ public class Shooting_S : MonoBehaviour
 
         if (spawnCoolDown <= 0)
         {
+            swap = true;
             spawnCheck = true;
             spawnCoolDown = 3.0f;
         }
@@ -77,6 +79,7 @@ public class Shooting_S : MonoBehaviour
                 gameObject.GetComponent<Rigidbody2D>().linearVelocity = direction * (power * gameObject.GetComponent<Stats_S>().Speed);
                 gameObject.tag = "Untagged";
                 spawnCheck = false;
+                swap = false;
                 power = 0f;
                 ballsUsed++;
                 return;  

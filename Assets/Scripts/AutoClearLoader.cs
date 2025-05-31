@@ -9,37 +9,45 @@ public class AutoClearLoader : MonoBehaviour
     [SerializeField]
     private string clearSceneName = "GameClearScene";
 
-    GameObject King;
-    private bool StageClear = false;
+    private GameObject King;
+    private BallSystem_S BS;
+    private bool StageClear;
     private float timer = 0f;
     private bool sceneLoading = false;
 
     void Start()
     {
         StageClear = false;
+        BS = GameObject.Find("BallSystem").GetComponent<BallSystem_S>();
     }
 
     void Update()
     {
-        King = GameObject.Find("EnemyRank11");
-        if (King != null)
+        //DON'T TOUCH THIS PART
+        bool EnemyExists = GameObject.FindGameObjectWithTag("Enemy") != null;
+
+        if (EnemyExists)
         {
-            return;
-        }
-        else if (King == null)
-        {
-            StageClear = true;
+           King = GameObject.Find("E RANK11_0");
+           StageClear = (King == null);
         }
 
-        if (StageClear && !sceneLoading)
+        if ((BS.GameOver || StageClear) && !sceneLoading)
         {
             timer += Time.deltaTime;
 
             if (timer >= waitTime)
             {
                 sceneLoading = true;
-                PlayerPrefs.SetString("LastStage", SceneManager.GetActiveScene().name);
-                SceneManager.LoadScene(clearSceneName);
+                if(StageClear)
+                {
+                     PlayerPrefs.SetString("LastStage", SceneManager.GetActiveScene().name);
+                     SceneManager.LoadScene(clearSceneName);
+                }
+                else
+                {
+                    SceneManager.LoadScene("GameOverScene");
+                }
             }
         }
     }

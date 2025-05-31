@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 7147262205341873842}
   - component: {fileID: 4039158896321534977}
   - component: {fileID: 4944993333511443644}
-  - component: {fileID: 6074720989994662543}
-  - component: {fileID: -6572834635164687286}
   - component: {fileID: 2803206780149419261}
+  - component: {fileID: -2066148216826449554}
   m_Layer: 0
   m_Name: N_0
   m_TagString: Player
@@ -108,7 +107,7 @@ Rigidbody2D:
   m_LinearDamping: 0.1
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e50010d82a0a624468d03a5b945f2766, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -129,7 +128,7 @@ CircleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e50010d82a0a624468d03a5b945f2766, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -155,42 +154,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 2.2
---- !u!114 &6074720989994662543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3430782122593521472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09698f9ef2c4083449907e7b35f186a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteA: {fileID: 6059799596907309901, guid: 961deb68bf1f4554b83076a2495746ae, type: 3}
-  spriteB: {fileID: -3466845185663521515, guid: be1959c050b8b1e40852fe59f0109f58, type: 3}
---- !u!95 &-6572834635164687286
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3430782122593521472}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3d13133f5f0656c498a22dcc81223fd5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2803206780149419261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,3 +169,17 @@ MonoBehaviour:
   Rank: 999
   Speed: 5
   explosionPrefab: {fileID: 1303528749979744626, guid: e2694b3650282884ab8bcd12d7ed437a, type: 3}
+--- !u!114 &-2066148216826449554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3430782122593521472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09698f9ef2c4083449907e7b35f186a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteA: {fileID: 6059799596907309901, guid: 961deb68bf1f4554b83076a2495746ae, type: 3}
+  spriteB: {fileID: -3466845185663521515, guid: be1959c050b8b1e40852fe59f0109f58, type: 3}

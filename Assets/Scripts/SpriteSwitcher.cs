@@ -15,9 +15,6 @@ public class SpriteSwitcher : MonoBehaviour
     // スプライトを表示するためのSpriteRendererコンポーネント
     private SpriteRenderer spriteRenderer;
 
-    // スプライトが切り替わったかどうかを管理するフラグ
-    private bool isSwitched = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,18 +28,13 @@ public class SpriteSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Eキーが押されたときにスプライトを切り替える
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
-            // isSwitchedフラグを反転（現在の状態を切り替える）
-            isSwitched = true;
+            spriteRenderer.sprite = spriteB;
         }
-
-        if (Input.GetKeyUp(KeyCode.E))
+        else
         {
-            isSwitched = false;
+            spriteRenderer.sprite = spriteA;
         }
-
-        spriteRenderer.sprite = isSwitched ? spriteB : spriteA;
     }
 }

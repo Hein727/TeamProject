@@ -31,30 +31,31 @@ public class Stats_S : MonoBehaviour
         {
             if (other.tag != gameObject.tag)
             {
-                if (Rank == 11)
+                if (other.GetComponent<Stats_S>())
                 {
-                    isAlive = false;
-                    return;
-                }
-                //checking if the rank 1 and bomb are colliding 
-                else if (other.GetComponent<Stats_S>().Rank == 999)
-                {
-                    if (Rank == 1)
+                    if (Rank == 11)
                     {
-                        other.GetComponent<Stats_S>().isAlive = false;
+                        isAlive = false;
                     }
-                    isAlive = false;
-                    return;
-                }
-                else if (other.GetComponent<Stats_S>().Rank != 11 && (Rank <= other.GetComponent<Stats_S>().Rank))
-                {
-                    if(Rank == other.GetComponent<Stats_S>().Rank)
+                    //checking if the rank 1 and bomb are colliding 
+                    else if (other.GetComponent<Stats_S>().Rank == 999)
                     {
-                        other.GetComponent<Stats_S>().isAlive = false;
+                        if (Rank == 1)
+                        {
+                            other.GetComponent<Stats_S>().isAlive = false;
+                        }
+                        isAlive = false;
                     }
-                    isAlive = false;
-                    return;
+                    else if (other.GetComponent<Stats_S>().Rank != 11 && (Rank <= other.GetComponent<Stats_S>().Rank))
+                    {
+                        if(Rank == other.GetComponent<Stats_S>().Rank)
+                        {
+                            other.GetComponent<Stats_S>().isAlive = false;
+                        }
+                        isAlive = false;
+                    }
                 }
+                else {  return; }
             }
             else { return; }
         }

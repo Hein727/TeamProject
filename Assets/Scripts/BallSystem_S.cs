@@ -11,6 +11,7 @@ using System.Collections;
 using UnityEngine.InputSystem.LowLevel;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class BallSystem_S : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class BallSystem_S : MonoBehaviour
     };
     private int count = 0;
     private int swapCount = 0;
-    public bool stageClear = false;
+    public bool GameOver;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,6 +65,7 @@ public class BallSystem_S : MonoBehaviour
                 for (int i = 0; i < copies; i++)
                 {
                     list.Add(prefab);
+                    Debug.Log("Object" + prefab);
                 }
             }
             Shuffle();
@@ -74,6 +76,12 @@ public class BallSystem_S : MonoBehaviour
     void Update()
     {
         Draw();
+
+        if (count >= list.Count)
+        {
+            GameOver = true;
+            Debug.Log("Game Over! You have no more balls left to play with." + GameOver);
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -97,6 +105,7 @@ public class BallSystem_S : MonoBehaviour
 
     private void Draw()
     {
+        GameOver = false;
         GameObject gameObject = GameObject.FindWithTag("Player");
         Shooting = FindFirstObjectByType<Shooting_S>();
         if (gameObject == null)
@@ -105,15 +114,14 @@ public class BallSystem_S : MonoBehaviour
             {
                 if (list2.Count == 0)
                 {
-                    list2.Clear();
                     prefab = list[count];
                     list2.Add(prefab);
                     GameObject instance = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
                     instance.tag = "Player";
-                    for (int i = 1; i < 4; i++)
+                    for (int i = 1; i < 4 && count < list.Count; i++)
                     {
                         list2.Add(list[count++]);
-
+                        Debug.Log("Number" + count);
                     }
 
                     UISwap();
@@ -142,27 +150,30 @@ public class BallSystem_S : MonoBehaviour
 
     private void Swapping()
     {
-        GameObject gameObject = GameObject.FindWithTag("Player");
-
-        if (list2.Count == 0) return;
-
-        swapCount = (swapCount + 1) % list2.Count;
-        prefab = list2[swapCount];
-
-        if (Shooting.ballsUsed > 4)
+        if(Shooting.swap)
         {
-            list2.Clear();
-            swapCount = 0;
-            return;
-        }
+            GameObject gameObject = GameObject.FindWithTag("Player");
 
-        if (gameObject != null)
-        {
-            Destroy(gameObject);
-        }
+            if (list2.Count == 0) return;
 
-        GameObject pawn = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
-        UISwap();
+            swapCount = (swapCount + 1) % list2.Count;
+            prefab = list2[swapCount];
+
+            if (Shooting.ballsUsed > 4)
+            {
+                list2.Clear();
+                swapCount = 0;
+                return;
+            }
+
+            if (gameObject != null)
+            {
+                Destroy(gameObject);
+            }
+
+            GameObject pawn = Instantiate(prefab, GameObject.Find("Start Point").transform.position, Quaternion.identity);
+            UISwap();
+        }
     }
 
     private void UISwap()   
